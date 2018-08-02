@@ -5,7 +5,7 @@
 
 打包用的Eletron-builder
 
-![image](http://7xsvb3.com1.z0.glb.clouddn.com/3a3f444139b45ebe7ff6b8fdda436013.png)
+![image](http://7xsvb3.com1.z0.glb.clouddn.com/3e61e2883f4a1da6ff9d75f729eecb9c.png)
 
 ## dev
 
