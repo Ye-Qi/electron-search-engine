@@ -1,28 +1,8 @@
-# EleSearchEngine
+# Eletron Search Engine
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1.
+这是一个小伙伴有个需求，想要锤子TNT的搜索。之前给他做了一版在chrome中弹窗的，但个人认为效果不是很好。所以做了一版桌面版的。
+技术架构是Eletron、typescript、Angular、Material
 
-## Development server
+打包用的Eletron-builder
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-# electron-search-engine
+屏幕快照 2018-08-02 14.44.43.png
