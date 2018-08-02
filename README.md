@@ -6,3 +6,15 @@
 打包用的Eletron-builder
 
 屏幕快照 2018-08-02 14.44.43.png
+
+## dev
+
+```
+yarn dev
+```
+
+## pack mac
+
+```
+yarn mac
+```
