@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+.header {
+  display: flex;
+}
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+}
+.search-input {
+  width: 612px;
+  height: 48px;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+  font-size: 17px;
+  margin-left: 8px;
+  &::placeholder {
+    color: mat-color($mat-grey, 700);
+  }
+}
+.icon {
+  fill: mat-color($mat-indigo, 500);
+}
+.unFocused {
+  visibility: hidden;
+}
+.focused {
+  visibility: visible;
+}

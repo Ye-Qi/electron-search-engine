@@ -1,8 +1,5 @@
 <div>
-  <mat-form-field class="search-input">
-    <input matInput placeholder="输入关键字" #text>
-  </mat-form-field>
-  <button mat-flat-button color="primary" (click)="search(text.value)">搜索</button>
+  <app-home-header [search]="search"></app-home-header>
   <div class="search-engine-wrapper" *ngIf="isNotFirst()">
     <mat-card class="search-engine" *ngFor="let e of engines">
       <mat-card-header>

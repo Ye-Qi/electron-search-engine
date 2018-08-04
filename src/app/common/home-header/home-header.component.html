@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="header">
+    <div class="search-wrapper">
+        <mat-icon class="icon" svgIcon="ic-search"></mat-icon>
+        <input
+          class="search-input"
+          placeholder="请输入关键字"
+          [value]="text"
+          (focus)="handleFocus()"
+          (blur)="handleBlur()"
+          (keyup)="handleKeyUp($event)"
+        >
+        <button
+          mat-icon-button
+          [class.focused]="focusing"
+          [class.unFocused]="!focusing"
+        >
+          <mat-icon
+            class="icon"
+            svgIcon="ic-close"
+          ></mat-icon>
+        </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   ]
 })
 export class AppComponent {
-  searchText = ''
+  search = ''
   first = true
   engines = [
     'https://www.youtube.com/results?search_query=',
@@ -17,12 +17,11 @@ export class AppComponent {
     'https://www.sogou.com/web?query=',
     'https://www.xiaohongshu.com/search_result/'
   ]
-  search(text: string) {
-    if (this.searchText === text || !text) {
+  handleSearch() {
+    if (!this.search) {
       return
     }
     this.first = false
-    this.searchText = text
   }
   isNotFirst() {
     return !this.first
