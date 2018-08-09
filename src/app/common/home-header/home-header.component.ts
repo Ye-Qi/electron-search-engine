@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
 import { MatIconRegistry } from '@angular/material'
+import SearchService from '../../service/search.service'
 
 @Component({
   selector: 'app-home-header',
@@ -9,12 +10,10 @@ import { MatIconRegistry } from '@angular/material'
 })
 export class HomeHeaderComponent implements OnInit {
 
-  @Input() search: string;
-
   private focusing = false
   private text = ''
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private searchService: SearchService) {
     iconRegistry.addSvgIcon(
       'ic-search',
       sanitizer.bypassSecurityTrustResourceUrl('node_modules/material-design-icons/action/svg/production/ic_search_48px.svg')
@@ -32,15 +31,17 @@ export class HomeHeaderComponent implements OnInit {
     this.focusing = true
   }
   handleBlur () {
-    this.focusing = false
+    setTimeout(() => {
+      this.focusing = false
+    }, 500)
   }
   handleKeyUp (e: KeyboardEvent) {
     if (e.keyCode === 13) {
-      this.search = this.text
+      this.searchService.search(this.text)
     }
   }
   handleClick (e: MouseEvent) {
-    e.preventDefault()
-    this.search = ''
+    this.text = ''
+    this.searchService.search(this.text)
   }
 }

@@ -1,13 +1,13 @@
-<div>
-  <app-home-header [search]="search"></app-home-header>
-  <div class="search-engine-wrapper" *ngIf="isNotFirst()">
+<div class='wrapper'>
+  <app-home-header class="app-home-header"></app-home-header>
+  <div class="search-engine-wrapper" *ngIf="!isFirstSearch && search">
     <mat-card class="search-engine" *ngFor="let e of engines">
       <mat-card-header>
-        <mat-card-title>{{e}}{{searchText}}</mat-card-title>
+        <mat-card-title>{{e}}{{search}}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <webview
-          attr.src="{{e}}{{searchText}}"
+          attr.src="{{e}}{{search}}"
           useragent="Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1"
           width="100%"
           height="100%"

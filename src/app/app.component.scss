@@ -1,10 +1,22 @@
+.wrapper {
+  padding-top: 65px;
+}
+.app-home-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
 .main {
   padding: 20px;
 }
+
 .search-input {
   width: 400px;
   margin-right: 10px;
 }
+
 .search-engine-wrapper {
   padding-top: 20px;
   .search-engine {

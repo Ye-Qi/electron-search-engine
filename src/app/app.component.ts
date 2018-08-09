@@ -1,4 +1,5 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import SearchService from './service/search.service'
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,9 @@ import { Component } from '@angular/core'
     './app.component.scss'
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   search = ''
-  first = true
+  isFirstSearch = true
   engines = [
     'https://www.youtube.com/results?search_query=',
     'https://www.google.com/search?q=',
@@ -17,13 +18,21 @@ export class AppComponent {
     'https://www.sogou.com/web?query=',
     'https://www.xiaohongshu.com/search_result/'
   ]
-  handleSearch() {
-    if (!this.search) {
-      return
-    }
-    this.first = false
+  constructor (public searchService: SearchService) {}
+
+  ngOnInit () {
+    this.handleSearch()
   }
-  isNotFirst() {
-    return !this.first
+
+  handleSearch () {
+    this.searchService.search$.subscribe((search) => {
+      console.log('search', search)
+      if (this.isFirstSearch && search) {
+        this.search = search
+        this.isFirstSearch = false
+      } else if (!this.isFirstSearch) {
+        this.search = search
+      }
+    })
   }
 }
