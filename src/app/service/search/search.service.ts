@@ -12,7 +12,6 @@ export default class SearchService {
   constructor() { }
 
   search (text: string) {
-    console.log('text', text)
     this.searchSource.next(text)
   }
 }

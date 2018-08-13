@@ -1,7 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
 import { MatIconRegistry } from '@angular/material'
-import SearchService from '../../service/search.service'
+import SearchService from '../../service/search/search.service'
+
+const ICONS = {
+  'ic-search': 'node_modules/material-design-icons/action/svg/production/ic_search_48px.svg',
+  'ic-close': 'node_modules/material-design-icons/action/svg/production/ic_search_48px.svg',
+  'ic-menu': 'node_modules/material-design-icons/navigation/svg/production/ic_menu_48px.svg'
+}
 
 @Component({
   selector: 'app-home-header',
@@ -14,14 +20,13 @@ export class HomeHeaderComponent implements OnInit {
   private text = ''
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private searchService: SearchService) {
-    iconRegistry.addSvgIcon(
-      'ic-search',
-      sanitizer.bypassSecurityTrustResourceUrl('node_modules/material-design-icons/action/svg/production/ic_search_48px.svg')
-    )
-    iconRegistry.addSvgIcon(
-      'ic-close',
-      sanitizer.bypassSecurityTrustResourceUrl('node_modules/material-design-icons/navigation/svg/production/ic_close_48px.svg')
-    )
+    const iconNames = Object.keys(ICONS);
+    iconNames.forEach((name) => {
+      iconRegistry.addSvgIcon(
+        name,
+        sanitizer.bypassSecurityTrustResourceUrl(ICONS[name])
+      )
+    })
   }
 
   ngOnInit() {

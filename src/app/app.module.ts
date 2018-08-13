@@ -13,13 +13,15 @@ import { MatCardModule } from '@angular/material/card'
 
 import { AppComponent } from './app.component'
 import { WebviewDirective } from './webview.directive'
-import { HomeHeaderComponent } from './common/home-header/home-header.component'
+import { HomeHeaderComponent } from './common/home-header/home-header.component';
+import { HomeSidebarComponent } from './common/home-sidebar/home-sidebar.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     WebviewDirective,
-    HomeHeaderComponent
+    HomeHeaderComponent,
+    HomeSidebarComponent
   ],
   imports: [
     BrowserModule,
