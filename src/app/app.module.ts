@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
+import { MatListModule } from '@angular/material/list'
 
 import { AppComponent } from './app.component'
 import { WebviewDirective } from './webview.directive'
@@ -34,7 +35,8 @@ import { HomeSidebarComponent } from './common/home-sidebar/home-sidebar.compone
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

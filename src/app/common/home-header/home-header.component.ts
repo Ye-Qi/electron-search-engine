@@ -2,10 +2,11 @@ import { Component, OnInit, Input } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
 import { MatIconRegistry } from '@angular/material'
 import SearchService from '../../service/search/search.service'
+import WebsitesService from '../../service/websites/websites.service'
 
 const ICONS = {
   'ic-search': 'node_modules/material-design-icons/action/svg/production/ic_search_48px.svg',
-  'ic-close': 'node_modules/material-design-icons/action/svg/production/ic_search_48px.svg',
+  'ic-close': 'node_modules/material-design-icons/content/svg/production/ic_clear_48px.svg',
   'ic-menu': 'node_modules/material-design-icons/navigation/svg/production/ic_menu_48px.svg'
 }
 
@@ -18,14 +19,24 @@ export class HomeHeaderComponent implements OnInit {
 
   private focusing = false
   private text = ''
+  private showSidebar = false
+  public toggleSidebar
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private searchService: SearchService) {
+  constructor(
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+    public searchService: SearchService,
+    public websitesService: WebsitesService
+  ) {
     const iconNames = Object.keys(ICONS);
     iconNames.forEach((name) => {
       iconRegistry.addSvgIcon(
         name,
         sanitizer.bypassSecurityTrustResourceUrl(ICONS[name])
       )
+    })
+    websitesService.show$.subscribe((show) => {
+      this.showSidebar = show
     })
   }
 

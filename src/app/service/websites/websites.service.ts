@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Subject } from 'rxjs'
 
-const websites = {
+export const websites = {
   youtube: {
     url: 'https://www.youtube.com/results?search_query=',
     icon: ''
@@ -30,12 +30,22 @@ const websites = {
 @Injectable({
   providedIn: 'root'
 })
-export class WebsitesService {
+export default class WebsitesService {
+  selectedWebsites: string[] = Object.keys(websites);
   private showSource = new Subject<boolean>()
   show$ = this.showSource.asObservable()
   constructor() { }
 
   toggleShow (show: boolean) {
     this.showSource.next(show)
+  }
+
+  toggleWebsite(website: string) {
+    console.log('website', website);
+    if (!this.selectedWebsites.includes(website)) {
+      this.selectedWebsites.push(website);
+    } else {
+      this.selectedWebsites = this.selectedWebsites.filter((web) => (web !== website))
+    }
   }
 }

@@ -1,18 +1,27 @@
 <div class='wrapper'>
   <app-home-header class="app-home-header"></app-home-header>
-  <div class="search-engine-wrapper" *ngIf="!isFirstSearch && search">
-    <mat-card class="search-engine" *ngFor="let e of engines">
-      <mat-card-header>
-        <mat-card-title>{{e}}{{search}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <webview
-          attr.src="{{e}}{{search}}"
-          useragent="Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1"
-          width="100%"
-          height="100%"
-        ></webview>
-      </mat-card-content>
-    </mat-card>
+  <div class="main">
+    <app-home-sidebar class="sidebar-wrapper" [@flyInOut]="sidebarState"></app-home-sidebar>
+    <div class="search-engine-wrapper" *ngIf="!isFirstSearch && search" [@flyInOut]="searchState">
+      <span *ngFor="let key of Object.keys(websites)">
+        <mat-card class="search-engine" *ngIf="websitesService.selectedWebsites.includes(key)">
+          <mat-card-header>
+            <mat-card-title class="title">
+              <span>{{websites[key].name || key}}</span>
+              <span class="search-placeholder">搜索</span>
+              <span class="search-text">{{search}}</span>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <webview
+              attr.src="{{websites[key].url}}{{search}}"
+              useragent="Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1"
+              width="100%"
+              height="100%"
+            ></webview>
+          </mat-card-content>
+        </mat-card>
+      </span>
+    </div>
   </div>
 </div>
