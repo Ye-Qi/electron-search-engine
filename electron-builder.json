@@ -18,7 +18,7 @@
         "!karma.conf.js",
         "!tsconfig.json",
         "!tslint.json",
-        "icon.png"
+        "build/icon.*"
     ],
   "mac": {
     "target": [

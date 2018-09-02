@@ -6,8 +6,8 @@ import {
   animate,
   transition
 } from '@angular/animations'
-import SearchService from './service/search/search.service'
-import WebsitesService, { websites } from './service/websites/websites.service'
+import { SearchService } from './service/search/search.service'
+import { WebsitesService, websites } from './service/websites/websites.service'
 
 @Component({
   selector: 'app-root',

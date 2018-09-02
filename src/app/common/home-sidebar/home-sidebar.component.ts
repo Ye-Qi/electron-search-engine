@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import WebsitesService, { websites } from '../../service/websites/websites.service'
+import { WebsitesService, websites } from '../../service/websites/websites.service'
 
 @Component({
   selector: 'app-home-sidebar',

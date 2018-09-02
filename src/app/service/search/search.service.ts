@@ -4,7 +4,7 @@ import { Subject } from 'rxjs'
 @Injectable({
   providedIn: 'root'
 })
-export default class SearchService {
+export class SearchService {
   private searchSource = new Subject<string>()
 
   search$ = this.searchSource.asObservable()

@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
 import { MatIconRegistry } from '@angular/material'
-import SearchService from '../../service/search/search.service'
-import WebsitesService from '../../service/websites/websites.service'
+import { SearchService } from '../../service/search/search.service'
+import { WebsitesService } from '../../service/websites/websites.service'
 
 const ICONS = {
   'ic-search': 'node_modules/material-design-icons/action/svg/production/ic_search_48px.svg',
@@ -17,9 +17,9 @@ const ICONS = {
 })
 export class HomeHeaderComponent implements OnInit {
 
-  private focusing = false
-  private text = ''
-  private showSidebar = false
+  public focusing = false
+  public text = ''
+  public showSidebar = false
   public toggleSidebar
 
   constructor(

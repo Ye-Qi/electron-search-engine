@@ -15,8 +15,11 @@ import { MatGridListModule } from '@angular/material/grid-list'
 
 import { AppComponent } from './app.component'
 import { WebviewDirective } from './webview.directive'
-import { HomeHeaderComponent } from './common/home-header/home-header.component';
+import { HomeHeaderComponent } from './common/home-header/home-header.component'
 import { HomeSidebarComponent } from './common/home-sidebar/home-sidebar.component'
+
+import { SearchService } from './service/search/search.service'
+import { WebsitesService } from './service/websites/websites.service'
 
 @NgModule({
   declarations: [
@@ -40,7 +43,13 @@ import { HomeSidebarComponent } from './common/home-sidebar/home-sidebar.compone
     MatListModule,
     MatGridListModule
   ],
-  providers: [],
+  providers: [{
+    provide: SearchService,
+    useClass: SearchService
+  }, {
+    provide: WebsitesService,
+    useClass: WebsitesService
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

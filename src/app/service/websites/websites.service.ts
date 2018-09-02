@@ -30,7 +30,7 @@ export const websites = {
 @Injectable({
   providedIn: 'root'
 })
-export default class WebsitesService {
+export class WebsitesService {
   selectedWebsites: string[] = Object.keys(websites);
   private showSource = new Subject<boolean>()
   show$ = this.showSource.asObservable()
@@ -41,7 +41,6 @@ export default class WebsitesService {
   }
 
   toggleWebsite(website: string) {
-    console.log('website', website);
     if (!this.selectedWebsites.includes(website)) {
       this.selectedWebsites.push(website);
     } else {
