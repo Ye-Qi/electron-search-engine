@@ -17,16 +17,23 @@ import WebsitesService, { websites } from './service/websites/websites.service'
   ],
   animations: [
     trigger('flyInOut', [
-      state('inactive', style({
-        opacity: 0,
-        transform: 'translateX(-100%)'
+      state('in', style({
+        transform: 'translateX(0)',
+        opacity: 1
       })),
-      state('active', style({
-        opacity: 1,
-        transform: 'translateX(0)'
-      })),
-      transition('inactive => active', animate('100ms ease-in')),
-      transition('active => inactive', animate('100ms ease-out'))
+      transition('void => *', [
+        style({
+          transform: 'translateX(-100%)',
+          opacity: 0
+        }),
+        animate(250)
+      ]),
+      transition('* => void', [
+        animate(250, style({
+          transform: 'translateX(-100%)',
+          opacity: 0
+        }))
+      ])
     ])
   ]
 })
@@ -37,13 +44,12 @@ export class AppComponent implements OnInit {
   Object = Object
   sidebarState = ''
   show = false
+  rowHeight = '667px'
   constructor (public searchService: SearchService, public websitesService: WebsitesService) {
     websitesService.show$.subscribe((show) => {
       this.show = show;
       if (this.show) {
-        this.sidebarState = 'inactive'
-      } else {
-        this.sidebarState = 'active'
+        this.rowHeight = '800px'
       }
     })
   }

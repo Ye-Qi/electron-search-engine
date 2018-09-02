@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
 import { MatListModule } from '@angular/material/list'
+import { MatGridListModule } from '@angular/material/grid-list'
 
 import { AppComponent } from './app.component'
 import { WebviewDirective } from './webview.directive'
@@ -36,7 +37,8 @@ import { HomeSidebarComponent } from './common/home-sidebar/home-sidebar.compone
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
