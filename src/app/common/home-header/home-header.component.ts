@@ -5,9 +5,9 @@ import { SearchService } from '../../service/search/search.service'
 import { WebsitesService } from '../../service/websites/websites.service'
 
 const ICONS = {
-  'ic-search': '../../../assets/svg/material-icons/search.svg',
-  'ic-close': '../../../assets/svg/material-icons/clear.svg',
-  'ic-menu': '../../../assets/svg/material-icons/menu.svg'
+  'ic-search': 'assets/svg/material-icons/search.svg',
+  'ic-close': 'assets/svg/material-icons/clear.svg',
+  'ic-menu': 'assets/svg/material-icons/menu.svg'
 }
 
 @Component({
