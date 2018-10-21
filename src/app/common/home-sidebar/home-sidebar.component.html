@@ -2,8 +2,8 @@
   <mat-selection-list>
     <mat-list-option
       *ngFor="let key of Object.keys(websites)"
-      value="key"
-      selected="websitesService.selectedWebsites.includes(key)"
+      [value]="key"
+      [selected]="websitesService.includeWebsites(key)"
       (click)="websitesService.toggleWebsite(key)"
     >
       {{websites[key].name || key}}

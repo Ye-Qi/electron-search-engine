@@ -5,9 +5,9 @@ import { SearchService } from '../../service/search/search.service'
 import { WebsitesService } from '../../service/websites/websites.service'
 
 const ICONS = {
-  'ic-search': 'node_modules/material-design-icons/action/svg/production/ic_search_48px.svg',
-  'ic-close': 'node_modules/material-design-icons/content/svg/production/ic_clear_48px.svg',
-  'ic-menu': 'node_modules/material-design-icons/navigation/svg/production/ic_menu_48px.svg'
+  'ic-search': '../../../assets/svg/material-icons/search.svg',
+  'ic-close': '../../../assets/svg/material-icons/clear.svg',
+  'ic-menu': '../../../assets/svg/material-icons/menu.svg'
 }
 
 @Component({

@@ -20,10 +20,35 @@ export const websites = {
     icon: '',
     name: '搜狗'
   },
-  xiaohongshu: {
-    url: 'https://www.xiaohongshu.com/search_result/',
+  behance: {
+    url: 'https://www.behance.net/search?content=projects&sort=appreciations&time=week&featured_on_behance=true&search=',
     icon: '',
-    name: '小红书'
+    name: 'behance'
+  },
+  dribbble: {
+    url: 'https://dribbble.com/search?q=',
+    icon: '',
+    name: '人人都是产品经理'
+  },
+  jianshu: {
+    url: 'https://www.jianshu.com/search?q=',
+    icon: '',
+    name: '简书'
+  },
+  juejin: {
+    url: 'https://juejin.im/search?query=',
+    icon: '',
+    name: '掘金'
+  },
+  kr: {
+    url: 'https://36kr.com/search/articles/',
+    icon: '',
+    name: '36氪'
+  },
+  zhihu: {
+    url: 'https://www.zhihu.com/search?type=content&q=',
+    icon: '',
+    name: '知乎'
   }
 }
 
@@ -46,5 +71,9 @@ export class WebsitesService {
     } else {
       this.selectedWebsites = this.selectedWebsites.filter((web) => (web !== website))
     }
+  }
+
+  includeWebsites(key: string) {
+    return this.selectedWebsites.includes(key);
   }
 }
