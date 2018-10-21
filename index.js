@@ -16,9 +16,12 @@ function createWindow() {
     x: 0,
     y: 0,
     width: size.width,
-    height: size.height
+    height: size.height,
+    backgroundColor: '#f1f1f1'
   })
-
+  win.once('ready-to-show', () => {
+    win.show()
+  })
   if (serve) {
     require('electron-reload')(__dirname, {
      electron: require(`${__dirname}/node_modules/electron`)})
