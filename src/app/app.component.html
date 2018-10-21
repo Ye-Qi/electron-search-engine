@@ -4,8 +4,8 @@
     <app-home-sidebar class="sidebar-wrapper" [@flyInOut]="sidebarState" *ngIf="!show"></app-home-sidebar>
     <div class="search-engine-wrapper" *ngIf="!isFirstSearch && search">
       <mat-grid-list cols="3" gutterSize="20px" rowHeight="{{rowHeight}}" class="mat-grid-list">
-        <mat-grid-tile *ngFor="let key of Object.keys(websites)" colspan="1" rowspan="1">
-          <mat-card class="search-engine" *ngIf="websitesService.selectedWebsites.includes(key)">
+        <mat-grid-tile *ngFor="let key of websitesService.selectedWebsites" colspan="1" rowspan="1">
+          <mat-card class="search-engine">
             <mat-card-header>
               <mat-card-title class="title">
                 <span>{{websites[key].name || key}}</span>
