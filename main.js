@@ -3,7 +3,8 @@ const path = require('path')
 const url = require('url')
 
 const { app, BrowserWindow } = electron
-let win, serve
+let win
+let serve
 const args = process.argv.slice(1)
 serve = args.some(val => val === '--serve')
 
@@ -23,9 +24,8 @@ function createWindow() {
     win.show()
   })
   if (serve) {
-    require('electron-reload')(__dirname, {
-     electron: require(`${__dirname}/node_modules/electron`)})
-    win.loadURL('http://localhost:4200')
+    require('electron-reload')(__dirname, { electron: require(`${__dirname}/node_modules/electron` )})
+    win.loadURL('http://localhost:3000')
     win.webContents.openDevTools()
   } else {
     win.loadURL(url.format({
