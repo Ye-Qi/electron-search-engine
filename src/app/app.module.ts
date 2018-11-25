@@ -12,11 +12,14 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
 import { MatListModule } from '@angular/material/list'
 import { MatGridListModule } from '@angular/material/grid-list'
+import { MatDialogModule } from '@angular/material/dialog'
 
 import { AppComponent } from './app.component'
 import { WebviewDirective } from './webview.directive'
 import { HomeHeaderComponent } from './common/home-header/home-header.component'
 import { HomeSidebarComponent } from './common/home-sidebar/home-sidebar.component'
+import { HomeAddEngineComponent } from './common/home-add-engine/home-add-engine.component'
+import { AddEngineDialogComponent } from './common/home-add-engine/add-engine-dialog/add-engine-dialog.component'
 
 import { SearchService } from './service/search/search.service'
 import { WebsitesService } from './service/websites/websites.service'
@@ -26,7 +29,12 @@ import { WebsitesService } from './service/websites/websites.service'
     AppComponent,
     WebviewDirective,
     HomeHeaderComponent,
-    HomeSidebarComponent
+    HomeSidebarComponent,
+    HomeAddEngineComponent,
+    AddEngineDialogComponent
+  ],
+  entryComponents: [
+    AddEngineDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +49,8 @@ import { WebsitesService } from './service/websites/websites.service'
     MatButtonModule,
     MatCardModule,
     MatListModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule
   ],
   providers: [{
     provide: SearchService,
