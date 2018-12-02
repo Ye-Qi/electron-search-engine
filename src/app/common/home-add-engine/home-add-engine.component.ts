@@ -16,7 +16,7 @@ export class HomeAddEngineComponent implements OnInit {
 
   openDialog(): void {
     this.dialog.open(AddEngineDialogComponent, {
-      width: '250px'
+      width: '650px'
     })
   }
 

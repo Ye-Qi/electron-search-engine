@@ -1,3 +1,24 @@
-<p>
-  add-engine-dialog works!
-</p>
+<div [formGroup]="form">
+  <h2 mat-dialog-title>添加搜索引擎</h2>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="名称" formControlName="name" required>
+    <mat-error *ngIf="form.hasError('required', 'name')">
+      名称必填
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="icon地址" formControlName="icon">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <textarea class="textarea" matInput placeholder="请输入搜索引擎url" rows="3" formControlName="url" required></textarea>
+    <mat-error *ngIf="form.hasError('required', 'url')">
+      url必填
+    </mat-error>
+    <mat-error *ngIf="!form.hasError('required', 'url') && form.hasError('pattern', 'url')">
+      请输入正确的url
+    </mat-error>
+  </mat-form-field>
+  <div class="button-wrapper">
+    <button mat-raised-button color="primary" (click)="onSubmit()" (disabled)="!!form.errors">保存</button>
+  </div>
+</div>

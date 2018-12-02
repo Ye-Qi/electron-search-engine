@@ -2,7 +2,8 @@
   <div class='list'>
     <mat-selection-list>
       <mat-list-option
-        *ngFor="let key of Object.keys(websites)"
+        *ngFor="let key of websitesService.selectedWebsites"
+        checkboxPosition="before"
         [value]="key"
         [selected]="websitesService.includeWebsites(key)"
         (click)="websitesService.toggleWebsite(key)"

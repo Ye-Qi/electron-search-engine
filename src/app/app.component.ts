@@ -7,7 +7,7 @@ import {
   transition
 } from '@angular/animations'
 import { SearchService } from './service/search/search.service'
-import { WebsitesService, websites } from './service/websites/websites.service'
+import { WebsitesService } from './service/websites/websites.service'
 
 @Component({
   selector: 'app-root',
@@ -40,7 +40,7 @@ import { WebsitesService, websites } from './service/websites/websites.service'
 export class AppComponent implements OnInit {
   search = ''
   isFirstSearch = true
-  websites = websites
+  websites = {}
   Object = Object
   sidebarState = ''
   show = false
@@ -52,9 +52,12 @@ export class AppComponent implements OnInit {
         this.rowHeight = '800px'
       }
     })
+    websitesService.websites$.subscribe((webs) => {
+      this.websites = webs
+    })
   }
 
-  ngOnInit () {
+  async ngOnInit () {
     this.handleSearch()
   }
 

@@ -1,76 +1,71 @@
 import { Injectable } from '@angular/core'
 import { Subject } from 'rxjs'
-
-export const websites = {
-  youtube: {
-    url: 'https://www.youtube.com/results?search_query=',
-    icon: ''
-  },
-  google: {
-    url: 'https://www.google.com/search?q=',
-    icon: ''
-  },
-  baidu: {
-    url: 'https://www.baidu.com/s?wd=',
-    icon: '',
-    name: '百度'
-  },
-  sogou: {
-    url: 'https://www.sogou.com/web?query=',
-    icon: '',
-    name: '搜狗'
-  },
-  behance: {
-    url: 'https://www.behance.net/search?content=projects&sort=appreciations&time=week&featured_on_behance=true&search=',
-    icon: '',
-    name: 'behance'
-  },
-  dribbble: {
-    url: 'https://dribbble.com/search?q=',
-    icon: '',
-    name: '人人都是产品经理'
-  },
-  jianshu: {
-    url: 'https://www.jianshu.com/search?q=',
-    icon: '',
-    name: '简书'
-  },
-  juejin: {
-    url: 'https://juejin.im/search?query=',
-    icon: '',
-    name: '掘金'
-  },
-  kr: {
-    url: 'https://36kr.com/search/articles/',
-    icon: '',
-    name: '36氪'
-  },
-  zhihu: {
-    url: 'https://www.zhihu.com/search?type=content&q=',
-    icon: '',
-    name: '知乎'
-  }
-}
+import storage from '../../utils/storage'
+import { websites as defaultWebsites } from '../../config/websites'
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebsitesService {
-  selectedWebsites: string[] = Object.keys(websites);
+  selectedWebsites: string[] = [];
+  private websitesSource = new Subject<object>()
   private showSource = new Subject<boolean>()
   show$ = this.showSource.asObservable()
-  constructor() { }
+  websites$ = this.websitesSource.asObservable()
+  constructor() {
+    this.init();
+    this.websites$.subscribe(webs => {
+      this.selectedWebsites = Object.keys(webs).filter((web) => webs[web].checked).sort((a, b) => (webs[a].createTime - webs[b].createTime))
+    })
+  }
+
+  async init () {
+    const websites = await storage.get('websites')
+    if (!websites || Object.keys(websites).length === 0) {
+      await storage.set('websites', defaultWebsites)
+      this.websitesSource.next(defaultWebsites)
+    } else {
+      this.websitesSource.next(websites)
+    }
+  }
+
+  async toggleWebsite(website: string) {
+    const websites = await storage.get('websites')
+
+    const webs = Object.keys(websites)
+    const webDetails = webs.find((web) => (web === website)) as any;
+    if (webDetails) {
+      webDetails.checked = !webDetails.checked
+      webDetails.updateTime = Date.now()
+      await storage.set('websites', websites)
+    }
+    this.websitesSource.next(websites)
+  }
+
+  async addWebsite(name: string, url: string, icon?: string) {
+    const websites = await storage.get('websites') as any
+    websites[name] = {
+      name,
+      url,
+      icon,
+      checked: true,
+      createTime: Date.now(),
+      updateTime: Date.now()
+    }
+    await storage.set('websites', websites)
+    this.websitesSource.next(websites)
+  }
+
+  async delWebsite(names: string[]) {
+    const websites = await storage.get('websites') as any
+    const delWebsite = websites.filter((web) => !names.includes(web))
+    await storage.set('websites', delWebsite)
+    this.websitesSource.next(delWebsite)
+  }
+
 
   toggleShow (show: boolean) {
     this.showSource.next(show)
-  }
-
-  toggleWebsite(website: string) {
-    if (!this.selectedWebsites.includes(website)) {
-      this.selectedWebsites.push(website);
-    } else {
-      this.selectedWebsites = this.selectedWebsites.filter((web) => (web !== website))
-    }
   }
 
   includeWebsites(key: string) {

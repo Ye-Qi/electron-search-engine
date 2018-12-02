@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { WebsitesService, websites } from '../../service/websites/websites.service'
+import { WebsitesService } from '../../service/websites/websites.service'
 
 @Component({
   selector: 'app-home-sidebar',
@@ -7,9 +7,14 @@ import { WebsitesService, websites } from '../../service/websites/websites.servi
   styleUrls: ['./home-sidebar.component.scss']
 })
 export class HomeSidebarComponent implements OnInit {
-  websites = websites
+  websites = {}
+  webs = []
   Object = Object
-  constructor(public websitesService: WebsitesService) {}
+  constructor(public websitesService: WebsitesService) {
+    websitesService.websites$.subscribe((webs) => {
+      this.websites = webs
+    })
+  }
 
   ngOnInit() {
   }
