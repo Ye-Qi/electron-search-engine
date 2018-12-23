@@ -35,12 +35,12 @@ export class HomeHeaderComponent implements OnInit {
         sanitizer.bypassSecurityTrustResourceUrl(ICONS[name])
       )
     })
-    websitesService.show$.subscribe((show) => {
-      this.showSidebar = show
-    })
   }
 
   ngOnInit() {
+    this.websitesService.show$.subscribe((show) => {
+      this.showSidebar = show
+    })
   }
 
   handleFocus () {

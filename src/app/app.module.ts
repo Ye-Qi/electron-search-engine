@@ -13,6 +13,8 @@ import { MatCardModule } from '@angular/material/card'
 import { MatListModule } from '@angular/material/list'
 import { MatGridListModule } from '@angular/material/grid-list'
 import { MatDialogModule } from '@angular/material/dialog'
+import { MatTooltipModule } from '@angular/material/tooltip'
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { AppComponent } from './app.component'
 import { WebviewDirective } from './webview.directive'
@@ -22,7 +24,10 @@ import { HomeAddEngineComponent } from './common/home-add-engine/home-add-engine
 import { AddEngineDialogComponent } from './common/home-add-engine/add-engine-dialog/add-engine-dialog.component'
 
 import { SearchService } from './service/search/search.service'
-import { WebsitesService } from './service/websites/websites.service'
+import { WebsitesService } from './service/websites/websites.service';
+import { HomeRemoveEngineComponent } from './common/home-remove-engine/home-remove-engine.component';
+import { ListEngineDialogComponent } from './common/home-remove-engine/list-engine-dialog/list-engine-dialog.component';
+import { HomeEngineListComponent } from './common/home-engine-list/home-engine-list.component'
 
 @NgModule({
   declarations: [
@@ -31,10 +36,14 @@ import { WebsitesService } from './service/websites/websites.service'
     HomeHeaderComponent,
     HomeSidebarComponent,
     HomeAddEngineComponent,
-    AddEngineDialogComponent
+    AddEngineDialogComponent,
+    HomeRemoveEngineComponent,
+    ListEngineDialogComponent,
+    HomeEngineListComponent
   ],
   entryComponents: [
-    AddEngineDialogComponent
+    AddEngineDialogComponent,
+    ListEngineDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +60,9 @@ import { WebsitesService } from './service/websites/websites.service'
     MatCardModule,
     MatListModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule,
+    MatBadgeModule
   ],
   providers: [{
     provide: SearchService,

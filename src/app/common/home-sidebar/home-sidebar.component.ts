@@ -8,15 +8,17 @@ import { WebsitesService } from '../../service/websites/websites.service'
 })
 export class HomeSidebarComponent implements OnInit {
   websites = {}
-  webs = []
-  Object = Object
-  constructor(public websitesService: WebsitesService) {
-    websitesService.websites$.subscribe((webs) => {
-      this.websites = webs
-    })
-  }
+  selected = []
+  constructor(public websitesService: WebsitesService) {}
 
   ngOnInit() {
+    this.websitesService.websites$.subscribe((originWebsites) => {
+      this.websites = originWebsites;
+      Object.keys(originWebsites).forEach((websiteName) => {
+        if (originWebsites[websiteName].checked) {
+          this.selected.push(websiteName)
+        }
+      })
+    })
   }
-
 }

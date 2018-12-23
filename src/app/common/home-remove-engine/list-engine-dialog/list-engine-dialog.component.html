@@ -1,0 +1,12 @@
+<div>
+  <h2 mat-dialog-title>删除搜索引擎</h2>
+  <app-home-engine-list
+    [websites]="data"
+    [selected]="selected"
+    (itemClick)="handleItemClick($event)"
+  ></app-home-engine-list>
+  <div class="footer">
+    <button mat-flat-button color="basic" (click)="handleCancelClick()">取消</button>
+    <button [matBadge]="selected.length" mat-flat-button color="primary" matTooltip="一旦删除无法恢复" (click)="handleComfirmClick()">确定</button>
+  </div>
+</div>

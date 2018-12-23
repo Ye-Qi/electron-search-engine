@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Subject } from 'rxjs'
+import { BehaviorSubject } from 'rxjs'
 import storage from '../../utils/storage'
 import { websites as defaultWebsites } from '../../config/websites'
 
@@ -8,8 +8,8 @@ import { websites as defaultWebsites } from '../../config/websites'
 })
 export class WebsitesService {
   selectedWebsites: string[] = [];
-  private websitesSource = new Subject<object>()
-  private showSource = new Subject<boolean>()
+  private websitesSource = new BehaviorSubject<object>({})
+  private showSource = new BehaviorSubject<boolean>(false)
   show$ = this.showSource.asObservable()
   websites$ = this.websitesSource.asObservable()
   constructor() {
@@ -32,8 +32,7 @@ export class WebsitesService {
   async toggleWebsite(website: string) {
     const websites = await storage.get('websites')
 
-    const webs = Object.keys(websites)
-    const webDetails = webs.find((web) => (web === website)) as any;
+    const webDetails = websites[website];
     if (webDetails) {
       webDetails.checked = !webDetails.checked
       webDetails.updateTime = Date.now()
@@ -57,10 +56,17 @@ export class WebsitesService {
   }
 
   async delWebsite(names: string[]) {
+    if (names.length === 0) {
+      return
+    }
     const websites = await storage.get('websites') as any
-    const delWebsite = websites.filter((web) => !names.includes(web))
-    await storage.set('websites', delWebsite)
-    this.websitesSource.next(delWebsite)
+    names.forEach(name => {
+      if (websites[name]) {
+        delete websites[name];
+      }
+    })
+    await storage.set('websites', websites)
+    this.websitesSource.next(websites)
   }
 
 
@@ -68,7 +74,8 @@ export class WebsitesService {
     this.showSource.next(show)
   }
 
-  includeWebsites(key: string) {
-    return this.selectedWebsites.includes(key);
+  async includeWebsites(key: string) {
+    const websites = await storage.get('websites')
+    return websites[key] && websites[key].checked
   }
 }

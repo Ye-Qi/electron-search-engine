@@ -1,0 +1,11 @@
+<mat-selection-list class="list">
+  <mat-list-option
+    *ngFor="let key of Object.keys(websites)"
+    checkboxPosition="before"
+    [value]="key"
+    [selected]="selected.includes(key)"
+    (click)="click(key)"
+  >
+    {{websites[key] && websites[key].name || key}}
+  </mat-list-option>
+</mat-selection-list>

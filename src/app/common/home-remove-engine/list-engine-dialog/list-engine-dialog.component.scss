@@ -1,0 +1,9 @@
+.footer {
+  padding: 20px 0;
+  text-align: right;
+  button {
+    &:first-child {
+      margin-right: 20px;
+    }
+  }
+}

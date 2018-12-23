@@ -8,3 +8,13 @@
   height: calc(100% - 100px);
   overflow: auto;
 }
+.op-wrapper {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.margin-middle {
+  width: 20px;
+  height: 1px;
+}

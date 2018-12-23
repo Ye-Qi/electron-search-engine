@@ -1,16 +1,14 @@
 <div class="sidebar">
   <div class='list'>
-    <mat-selection-list>
-      <mat-list-option
-        *ngFor="let key of websitesService.selectedWebsites"
-        checkboxPosition="before"
-        [value]="key"
-        [selected]="websitesService.includeWebsites(key)"
-        (click)="websitesService.toggleWebsite(key)"
-      >
-        {{websites[key].name || key}}
-      </mat-list-option>
-    </mat-selection-list>
+    <app-home-engine-list
+      [websites]="websites"
+      [selected]="selected"
+      (itemClick)="websitesService.toggleWebsite($event)"
+    ></app-home-engine-list>
   </div>
-  <app-home-add-engine></app-home-add-engine>
+  <div class="op-wrapper">
+    <app-home-add-engine></app-home-add-engine>
+    <div class="margin-middle"></div>
+    <app-home-remove-engine></app-home-remove-engine>
+  </div>
 </div>
